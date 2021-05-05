@@ -131,6 +131,7 @@ class Snake:
         self.placeFood()
 
 if __name__ == '__main__':
+    print("test")
     game = Snake(480, 640)
     while True:
         gameover, score = game.gameInputs()
