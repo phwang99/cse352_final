@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 
+=======
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+>>>>>>> c6d7b20aff651e2b9393e9180610374927706ef7
 /.idea
 /venv
