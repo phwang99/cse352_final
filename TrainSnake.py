@@ -9,14 +9,12 @@ import torch.optim as optim
 class SnakeNet(nn.Module):
     def __init__(self):
         super(SnakeNet, self).__init__()
-        self.fc1 = nn.Linear(11, 256)
-        self.fc2 = nn.Linear(256, 256)
-        self.fc4 = nn.Linear(256, 3)
+        self.fc1 = nn.Linear(11, 1024)
+        self.fc2 = nn.Linear(1024, 3)
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc4(x)
+        x = self.fc2(x)
         return x
 
     def save(self):

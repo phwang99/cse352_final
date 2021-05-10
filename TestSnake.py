@@ -8,23 +8,17 @@ import torch.nn.functional as F
 class SnakeNet(nn.Module):
     def __init__(self):
         super(SnakeNet, self).__init__()
-        self.fc1 = nn.Linear(11, 256)
-        self.fc2 = nn.Linear(256, 256)
-        self.fc3 = nn.Linear(256, 3)
+        self.fc1 = nn.Linear(11, 1024)
+        self.fc2 = nn.Linear(1024, 3)
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        x = self.fc2(x)
         return x
-
-    def save(self):
-        torch.save(self.state_dict(), 'trainedSnake.pth')
-
 
 class SnakeTest:
     def __init__(self):
-        self.game_number = 0
+        self.numOfGames = 0
         self.model = SnakeNet()
         self.model.load_state_dict(torch.load('trainedSnake.pth'))
         self.epsilon = 80
@@ -85,13 +79,13 @@ if __name__ == '__main__':
     snake = Snake(1280, 960)
     snakeTest = SnakeTest()
     highScore = 0
-    while snakeTest.game_number != 500:
+    while snakeTest.numOfGames != 500:
         logistics = snakeTest.getSnakeInfo(snake)
         action = snakeTest.get_action(logistics)
         end_game, score, reward = snake.AIControl(action)
         if end_game:
             snake.reset_game()
-            snakeTest.game_number += 1
-            if score > record:
-                record = score
-            print('Game', snakeTest.game_number, 'Score', score, 'High Score:', highScore)
+            snakeTest.numOfGames += 1
+            if score > highScore:
+                highScore = score
+            print('Game', snakeTest.numOfGames, 'Score', score, 'High Score:', highScore)
