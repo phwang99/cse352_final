@@ -1,6 +1,7 @@
 # cse352_final
 
 Dependencies: pygame and pytorch
+
 Python Version: 3.7+
 
 First, download the up to date code from the master branch.
