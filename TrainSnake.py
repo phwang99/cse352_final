@@ -64,9 +64,9 @@ class SnakeTrainer:
         self.memory = deque(maxlen = 100000)
 
     def getSnakeInfo(self, snake):
-        # Gives direction on where snake is going
         # Snake Positions
         positions = [location(snake.snake[0].x - 40, snake.snake[0].y),location(snake.snake[0].x - 40, snake.snake[0].y),location(snake.snake[0].x, snake.snake[0].y - 40), location(snake.snake[0].x, snake.snake[0].y + 40)]
+        # Gives direction on where snake is going
         going = [False, False, False, False]
         if snake.AIDirection == 1:
             going[0] = True
