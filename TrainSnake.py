@@ -27,7 +27,6 @@ class SnakeNetTarget:
         self.criterion = nn.MSELoss()
         self.gamma = gamma
 
-# Kinda Changed
     def trainStep(self, snakeInfo, nextSnakeInfo, action, reward, done):
         snakeInfo = torch.tensor(snakeInfo, dtype = torch.float)
         if (len(snakeInfo.shape) == 1):
@@ -66,6 +65,8 @@ class SnakeTrainer:
 
     def getSnakeInfo(self, snake):
         # Gives direction on where snake is going
+        # Snake Positions
+        positions = [location(snake.snake[0].x - 40, snake.snake[0].y),location(snake.snake[0].x - 40, snake.snake[0].y),location(snake.snake[0].x, snake.snake[0].y - 40), location(snake.snake[0].x, snake.snake[0].y + 40)]
         going = [False, False, False, False]
         if snake.AIDirection == 1:
             going[0] = True
@@ -75,10 +76,9 @@ class SnakeTrainer:
             going[2] = True
         if snake.AIDirection == 4:
             going[3] = True
+
         # Food Positions
         foodXY = [snake.food.x < snake.head.x, snake.food.x > snake.head.x, snake.food.y < snake.head.y, snake.food.y > snake.head.y]
-        # Snake Positions
-        positions = [location(snake.snake[0].x - 40, snake.snake[0].y), location(snake.snake[0].x - 40, snake.snake[0].y), location(snake.snake[0].x, snake.snake[0].y - 40), location(snake.snake[0].x, snake.snake[0].y + 40)]
         # Checks Collision with potential positions and going direction
         checkLeftLeft = snake.checkCollision(positions[0]) and going[0]
         checkRightRight = snake.checkCollision(positions[1]) and going[1]

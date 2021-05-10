@@ -146,7 +146,7 @@ class Snake:
         self.snake.insert(0, self.head)
         if (self.checkCollision()):
             return True, self.score, -10
-        if (self.iteration > 100*len(self.snake)):
+        if (self.iteration > 50*len(self.snake)):
             return True, self.score, -10
         self.checkSnakeFood()
         self.updateGame()
